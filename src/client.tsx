@@ -1,14 +1,9 @@
 /** Mobile session navigation overlay. */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { ClientContext, SessionId, WorkspaceId, SessionSummary, WorkspaceView } from '@deepseek-ai/dsh-client-runtime/client'
 import type { PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { CSSProperties, ReactNode } from 'react'
-
-declare module '@deepseek-ai/dsh-client-ui-slots' {
-  interface SlotMap {
-    'shell.overlay': { kind: 'list'; scope: 'root'; owner: Record<string, never> }
-  }
-}
+import type {} from '@deepseek-ai/dsh-client-ui-layout/client'
 
 type MobileOverlayProps = PropsRuntime<'shell.overlay'> & MobileInjected
 
@@ -36,6 +31,13 @@ const actionStyle: CSSProperties = {
 
 function MobileShell({ useSessions, useWorkspaces, open, startSession }: MobileOverlayProps): ReactNode {
   const [route, setRoute] = useState<Route>('list')
+  const [mobile, setMobile] = useState(() => window.innerWidth < 768)
+  useEffect(() => {
+    const onResize = (): void => { setMobile(window.innerWidth < 768) }
+    window.addEventListener('resize', onResize)
+    return () => { window.removeEventListener('resize', onResize) }
+  }, [])
+  if (!mobile) return null
   const sessions = useSessions(state => state)
   const workspaces = useWorkspaces(state => state)
   const archived = new Set(workspaces.archivedSessionIds)
