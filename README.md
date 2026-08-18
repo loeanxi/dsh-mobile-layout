@@ -2,11 +2,11 @@
 
 Touch-first session navigation for DeepSeek Harness Web.
 
-The first release will provide a mobile session list and a full-screen conversation view while leaving the desktop workbench unchanged. It is designed as an optional client plugin and will reuse the host's existing session, workspace, message, and composer surfaces.
+The first release will provide a mobile session list and a full-screen conversation view while leaving the desktop workbench unchanged. It is designed as an optional client plugin and will reuse the host's existing session, workspace, message, and composer surfaces. The host integration is documented in [MOBILE-SHELL-PROTOCOL.md](MOBILE-SHELL-PROTOCOL.md).
 
 ## Status
 
-Early development. The package and opt-in bundle manifest are available; the mobile shell is not yet registered into the host layout.
+Early development. The package and opt-in bundle manifest are available; the mobile shell is not yet registered into the host layout. The required additive host slot is now specified.
 
 ## Planned behavior
 
