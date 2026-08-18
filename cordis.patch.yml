@@ -1,0 +1,5 @@
+# The mobile client is opt-in. The patch will register the browser half
+# without changing the desktop composition until the mobile shell is ready.
+- insert:
+    - id: dsh-mobile-layout
+      name: '@loeanxi/dsh-mobile-layout'
